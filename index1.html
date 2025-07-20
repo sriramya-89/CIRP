@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Issues Reporting</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Google Maps API key (Replace YOUR_API_KEY with the actual API key) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Community Issues Reporting Platform</h1>
+
+        <form id="issueForm" onsubmit="submitIssue(event)">
+            <label for="villageName">Village Name:</label>
+            <input type="text" id="villageName" required>
+
+            <label for="issueDescription">Issue Description:</label>
+            <textarea id="issueDescription" required></textarea>
+
+            <label for="issueImage">Upload an Image:</label>
+            <input type="file" id="issueImage" accept="image/*" required>
+
+            <button type="submit">Submit Issue</button>
+        </form>
+
+        <div id="reportingStatus"></div>
+
+        <!-- Add a div for the map -->
+        <div id="map" class="map-container"></div>
+
+        <!-- Link to another page (Page 2) -->
+        <a href="c.html">Go to Page 2</a>
+    </div>
+
+    <!-- Link to your script file (Make sure scripts.js exists) -->
+    <script src="scripts.js"></script>
+
+    <script>
+        function initMap() {
+            // Map initialization code
+            const mapOptions = {
+                center: { lat: -34.397, lng: 150.644 },  // Default coordinates (adjust as needed)
+                zoom: 8
+            };
+            const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+
+        function submitIssue(event) {
+            event.preventDefault();  // Prevent default form submission
+
+            const villageName = document.getElementById('villageName').value;
+            const issueDescription = document.getElementById('issueDescription').value;
+            const issueImage = document.getElementById('issueImage').files[0];  // Handle the image file
+
+            // Handle form data, such as uploading the image or submitting to an API.
+            console.log(villageName, issueDescription, issueImage);
+
+            // Display reporting status
+            document.getElementById('reportingStatus').innerText = "Your issue has been submitted successfully!";
+
+            // Reset the form
+            document.getElementById('issueForm').reset();
+        }
+    </script>
+</body>
+</html>
